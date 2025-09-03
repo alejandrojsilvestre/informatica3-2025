@@ -4,19 +4,25 @@ package structs;
  * @param <T> el tipo de elementos almacenados en la cola
  */
 public class Queue<T> {
-    int front = 0;
-    int rear = -1;
-    int maxSize;
-    int count = 0;
-    T[] queueArray;
+    private static final int DEFAULT_SIZE = 10;
+    
+    private int front = 0;
+    private int rear = -1;
+    private int maxSize;
+    private int count = 0;
+    private T[] queueArray;
 
     /**
-     * Crea una cola con el tamaño máximo especificado.
+     * Crea una cola con el tamaño máximo especificado. Si el tamaño es nulo o menor o igual a 0, se usa el valor por defecto (10).
      * @param size el tamaño máximo de la cola
      */
     @SuppressWarnings("unchecked")
     public Queue(int size) {
-        this.maxSize = size;
+        if (size <= 0) {
+            this.maxSize = DEFAULT_SIZE;
+        } else {
+            this.maxSize = size;
+        }
         this.queueArray = (T[]) new Object[maxSize];
     }
 
@@ -26,7 +32,12 @@ public class Queue<T> {
      * @throws IllegalStateException si la cola está llena
      */
     public void enqueue(T value) {
-        // Implementación pendiente
+        if (isFull()) {
+            throw new IllegalStateException("Queue is full");
+        }
+        rear = (rear + 1) % maxSize;
+        queueArray[rear] = value;
+        count++;
     }
 
     /**
@@ -35,8 +46,13 @@ public class Queue<T> {
      * @throws IllegalStateException si la cola está vacía
      */
     public T dequeue() {
-        // Implementación pendiente
-        return null;
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        T value = queueArray[front];
+        front = (front + 1) % maxSize;
+        count--;
+        return value;
     }
 
     /**
@@ -45,8 +61,10 @@ public class Queue<T> {
      * @throws IllegalStateException si la cola está vacía
      */
     public T front() {
-        // Implementación pendiente
-        return null;
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        return queueArray[front];
     }
 
     /**
@@ -54,8 +72,7 @@ public class Queue<T> {
      * @return true si la cola está vacía, false en caso contrario
      */
     public boolean isEmpty() {
-        // Implementación pendiente
-        return false;
+        return count == 0;
     }
 
     /**
@@ -63,7 +80,6 @@ public class Queue<T> {
      * @return true si la cola está llena, false en caso contrario
      */
     public boolean isFull() {
-        // Implementación pendiente
-        return false;
+        return count == maxSize;
     }
 }
