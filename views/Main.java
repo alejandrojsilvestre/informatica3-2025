@@ -7,9 +7,35 @@ import structs.Queue;
 import orders.Orders;
 
 public class Main {
+    // Códigos de color ANSI
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    
     private static Scanner scanner = new Scanner(System.in);
     private static Stack<Integer> stack;
     private static Queue<Integer> queue;
+    
+    private static void limpiarPantalla() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+    
+    private static void mostrarEncabezado(String titulo) {
+        String linea = "=".repeat(50);
+        System.out.println(ANSI_BLUE + linea + ANSI_RESET);
+        System.out.println(ANSI_CYAN + " " + titulo + ANSI_RESET);
+        System.out.println(ANSI_BLUE + linea + ANSI_RESET);
+    }
+    
+    private static void pausar() {
+        System.out.println(ANSI_YELLOW + "\nPresione ENTER para continuar..." + ANSI_RESET);
+        scanner.nextLine();
+        if (scanner.hasNextLine()) scanner.nextLine();
+    }
     
     private static int leerEntero(String mensaje) {
         while (true) {
@@ -27,13 +53,19 @@ public class Main {
     public static void main(String[] args) {
         boolean running = true;
         while (running) {
-            System.out.println("\n=== Menú Principal ===");
-            System.out.println("1. Operaciones con Stack");
-            System.out.println("2. Operaciones con Queue");
-            System.out.println("3. Pruebas de Ordenamiento");
-            System.out.println("4. Salir");
+            limpiarPantalla();
+            mostrarEncabezado("ESTRUCTURAS DE DATOS Y ALGORITMOS - IUA 2025");
             
-            int choice = leerEntero("Seleccione una opción: ");
+            System.out.println(ANSI_CYAN + "\nOpciones disponibles:" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "1." + ANSI_RESET + " Operaciones con Stack " + 
+                             ANSI_BLUE + "[Pila LIFO]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "2." + ANSI_RESET + " Operaciones con Queue " + 
+                             ANSI_BLUE + "[Cola FIFO]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "3." + ANSI_RESET + " Pruebas de Ordenamiento " + 
+                             ANSI_BLUE + "[Sorting]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "4." + ANSI_RESET + " Salir");
+            
+            int choice = leerEntero(ANSI_CYAN + "\nSeleccione una opción (1-4): " + ANSI_RESET);
             
             switch (choice) {
                 case 1:
@@ -58,20 +90,24 @@ public class Main {
     
     private static void stackMenu() {
         if (stack == null) {
-            int size = leerEntero("Ingrese el tamaño del Stack: ");
+            int size = leerEntero(ANSI_CYAN + "Ingrese el tamaño del Stack: " + ANSI_RESET);
             stack = new Stack<>(size);
+            System.out.println(ANSI_GREEN + "Stack creado exitosamente!" + ANSI_RESET);
         }
         
         boolean stackMenuRunning = true;
         while (stackMenuRunning) {
-            System.out.println("\n=== Operaciones Stack ===");
-            System.out.println("1. Push");
-            System.out.println("2. Pop");
-            System.out.println("3. Top");
-            System.out.println("4. Verificar si está vacía");
-            System.out.println("5. Verificar si está llena");
-            System.out.println("6. Crear nuevo Stack");
-            System.out.println("7. Volver al menú principal");
+            limpiarPantalla();
+            mostrarEncabezado("OPERACIONES CON STACK (PILA)");
+            
+            System.out.println(ANSI_CYAN + "\nOperaciones disponibles:" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "1." + ANSI_RESET + " Push    " + ANSI_BLUE + "[Agregar elemento]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "2." + ANSI_RESET + " Pop     " + ANSI_BLUE + "[Quitar elemento del tope]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "3." + ANSI_RESET + " Top     " + ANSI_BLUE + "[Ver elemento del tope]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "4." + ANSI_RESET + " isEmpty " + ANSI_BLUE + "[Verificar si está vacía]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "5." + ANSI_RESET + " isFull  " + ANSI_BLUE + "[Verificar si está llena]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "6." + ANSI_RESET + " Crear nuevo Stack");
+            System.out.println(ANSI_YELLOW + "7." + ANSI_RESET + " Volver al menú principal");
             
             try {
                 int choice = leerEntero("Seleccione una opción: ");
@@ -112,20 +148,24 @@ public class Main {
     
     private static void queueMenu() {
         if (queue == null) {
-            int size = leerEntero("Ingrese el tamaño de la Queue: ");
+            int size = leerEntero(ANSI_CYAN + "Ingrese el tamaño de la Queue: " + ANSI_RESET);
             queue = new Queue<>(size);
+            System.out.println(ANSI_GREEN + "Queue creada exitosamente!" + ANSI_RESET);
         }
         
         boolean queueMenuRunning = true;
         while (queueMenuRunning) {
-            System.out.println("\n=== Operaciones Queue ===");
-            System.out.println("1. Enqueue");
-            System.out.println("2. Dequeue");
-            System.out.println("3. Front");
-            System.out.println("4. Verificar si está vacía");
-            System.out.println("5. Verificar si está llena");
-            System.out.println("6. Crear nueva Queue");
-            System.out.println("7. Volver al menú principal");
+            limpiarPantalla();
+            mostrarEncabezado("OPERACIONES CON QUEUE (COLA)");
+            
+            System.out.println(ANSI_CYAN + "\nOperaciones disponibles:" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "1." + ANSI_RESET + " Enqueue " + ANSI_BLUE + "[Agregar elemento]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "2." + ANSI_RESET + " Dequeue " + ANSI_BLUE + "[Quitar elemento del frente]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "3." + ANSI_RESET + " Front   " + ANSI_BLUE + "[Ver elemento del frente]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "4." + ANSI_RESET + " isEmpty " + ANSI_BLUE + "[Verificar si está vacía]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "5." + ANSI_RESET + " isFull  " + ANSI_BLUE + "[Verificar si está llena]" + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "6." + ANSI_RESET + " Crear nueva Queue");
+            System.out.println(ANSI_YELLOW + "7." + ANSI_RESET + " Volver al menú principal");
             
             try {
                 int choice = leerEntero("Seleccione una opción: ");
@@ -164,20 +204,47 @@ public class Main {
         }
     }
     
+    private static Integer[] generarArrayAleatorio(int size) {
+        Integer[] arr = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) (Math.random() * 100); // Números aleatorios entre 0 y 99
+        }
+        return arr;
+    }
+
     private static void sortingMenu() {
-        System.out.println("\n=== Pruebas de Ordenamiento ===");
-        int size = leerEntero("Ingrese el tamaño del array a ordenar: ");
+        limpiarPantalla();
+        mostrarEncabezado("PRUEBAS DE ORDENAMIENTO");
+        
+        int size = leerEntero(ANSI_CYAN + "\nIngrese el tamaño del array a ordenar: " + ANSI_RESET);
+        
+        System.out.println(ANSI_CYAN + "\n¿Cómo desea ingresar los datos?" + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "1." + ANSI_RESET + " Ingresar manualmente");
+        System.out.println(ANSI_YELLOW + "2." + ANSI_RESET + " Generar números aleatorios");
         
         Integer[] arr = new Integer[size];
-        System.out.println("Ingrese los " + size + " números:");
-        for (int i = 0; i < size; i++) {
-            arr[i] = leerEntero("Número " + (i+1) + ": ");
+        int opcion = leerEntero(ANSI_CYAN + "\nSeleccione una opción (1-2): " + ANSI_RESET);
+        
+        if (opcion == 1) {
+            System.out.println(ANSI_CYAN + "\nIngrese los " + size + " números:" + ANSI_RESET);
+            for (int i = 0; i < size; i++) {
+                arr[i] = leerEntero(ANSI_YELLOW + "Número " + (i+1) + ": " + ANSI_RESET);
+            }
+        } else if (opcion == 2) {
+            arr = generarArrayAleatorio(size);
+            System.out.println(ANSI_GREEN + "\nArray generado exitosamente!" + ANSI_RESET);
+        } else {
+            System.out.println(ANSI_RED + "Opción inválida. Generando números aleatorios por defecto..." + ANSI_RESET);
+            arr = generarArrayAleatorio(size);
         }
         
-        System.out.println("\nSeleccione el método de ordenamiento:");
-        System.out.println("1. Insertion Sort");
-        System.out.println("2. Shell Sort");
-        System.out.println("3. Quick Sort");
+        System.out.println(ANSI_CYAN + "\nMétodos de ordenamiento disponibles:" + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "1." + ANSI_RESET + " Insertion Sort " + 
+                         ANSI_BLUE + "[O(n²) - Mejor para arrays pequeños]" + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "2." + ANSI_RESET + " Shell Sort    " + 
+                         ANSI_BLUE + "[O(n log² n) - Mejora del Insertion Sort]" + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "3." + ANSI_RESET + " Quick Sort    " + 
+                         ANSI_BLUE + "[O(n log n) - Más eficiente en promedio]" + ANSI_RESET);
         
         int choice = leerEntero("Seleccione el método (1-3): ");
         System.out.println("\nArray original:");
@@ -203,9 +270,13 @@ public class Main {
     }
     
     private static void printArray(Integer[] arr) {
-        for (int num : arr) {
-            System.out.print(num + " ");
+        System.out.print(ANSI_CYAN + "[ " + ANSI_RESET);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(ANSI_YELLOW + arr[i] + ANSI_RESET);
+            if (i < arr.length - 1) {
+                System.out.print(ANSI_CYAN + ", " + ANSI_RESET);
+            }
         }
-        System.out.println();
+        System.out.println(ANSI_CYAN + " ]" + ANSI_RESET);
     }
 }
