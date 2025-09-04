@@ -1,6 +1,7 @@
 package views;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import structs.Stack;
 import structs.Queue;
 import orders.Orders;
@@ -10,6 +11,19 @@ public class Main {
     private static Stack<Integer> stack;
     private static Queue<Integer> queue;
     
+    private static int leerEntero(String mensaje) {
+        while (true) {
+            try {
+                System.out.print(mensaje);
+                int valor = scanner.nextInt();
+                return valor;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Debe ingresar un número entero válido.");
+                scanner.nextLine(); // Limpiar el buffer
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         boolean running = true;
         while (running) {
@@ -18,9 +32,8 @@ public class Main {
             System.out.println("2. Operaciones con Queue");
             System.out.println("3. Pruebas de Ordenamiento");
             System.out.println("4. Salir");
-            System.out.print("Seleccione una opción: ");
             
-            int choice = scanner.nextInt();
+            int choice = leerEntero("Seleccione una opción: ");
             
             switch (choice) {
                 case 1:
@@ -45,8 +58,7 @@ public class Main {
     
     private static void stackMenu() {
         if (stack == null) {
-            System.out.print("Ingrese el tamaño del Stack: ");
-            int size = scanner.nextInt();
+            int size = leerEntero("Ingrese el tamaño del Stack: ");
             stack = new Stack<>(size);
         }
         
@@ -60,14 +72,13 @@ public class Main {
             System.out.println("5. Verificar si está llena");
             System.out.println("6. Crear nuevo Stack");
             System.out.println("7. Volver al menú principal");
-            System.out.print("Seleccione una opción: ");
             
             try {
-                int choice = scanner.nextInt();
+                int choice = leerEntero("Seleccione una opción: ");
                 switch (choice) {
                     case 1:
-                        System.out.print("Ingrese valor a push: ");
-                        stack.push(scanner.nextInt());
+                        int valor = leerEntero("Ingrese valor a push: ");
+                        stack.push(valor);
                         System.out.println("Valor agregado exitosamente");
                         break;
                     case 2:
@@ -83,8 +94,8 @@ public class Main {
                         System.out.println("¿Está llena? " + stack.isFull());
                         break;
                     case 6:
-                        System.out.print("Ingrese nuevo tamaño: ");
-                        stack = new Stack<>(scanner.nextInt());
+                        int nuevoTamaño = leerEntero("Ingrese nuevo tamaño: ");
+                        stack = new Stack<>(nuevoTamaño);
                         System.out.println("Nuevo Stack creado");
                         break;
                     case 7:
@@ -101,8 +112,7 @@ public class Main {
     
     private static void queueMenu() {
         if (queue == null) {
-            System.out.print("Ingrese el tamaño de la Queue: ");
-            int size = scanner.nextInt();
+            int size = leerEntero("Ingrese el tamaño de la Queue: ");
             queue = new Queue<>(size);
         }
         
@@ -116,14 +126,13 @@ public class Main {
             System.out.println("5. Verificar si está llena");
             System.out.println("6. Crear nueva Queue");
             System.out.println("7. Volver al menú principal");
-            System.out.print("Seleccione una opción: ");
             
             try {
-                int choice = scanner.nextInt();
+                int choice = leerEntero("Seleccione una opción: ");
                 switch (choice) {
                     case 1:
-                        System.out.print("Ingrese valor a enqueue: ");
-                        queue.enqueue(scanner.nextInt());
+                        int valor = leerEntero("Ingrese valor a enqueue: ");
+                        queue.enqueue(valor);
                         System.out.println("Valor agregado exitosamente");
                         break;
                     case 2:
@@ -139,8 +148,8 @@ public class Main {
                         System.out.println("¿Está llena? " + queue.isFull());
                         break;
                     case 6:
-                        System.out.print("Ingrese nuevo tamaño: ");
-                        queue = new Queue<>(scanner.nextInt());
+                        int nuevoTamaño = leerEntero("Ingrese nuevo tamaño: ");
+                        queue = new Queue<>(nuevoTamaño);
                         System.out.println("Nueva Queue creada");
                         break;
                     case 7:
@@ -157,13 +166,12 @@ public class Main {
     
     private static void sortingMenu() {
         System.out.println("\n=== Pruebas de Ordenamiento ===");
-        System.out.println("Ingrese el tamaño del array a ordenar: ");
-        int size = scanner.nextInt();
+        int size = leerEntero("Ingrese el tamaño del array a ordenar: ");
         
         Integer[] arr = new Integer[size];
         System.out.println("Ingrese los " + size + " números:");
         for (int i = 0; i < size; i++) {
-            arr[i] = scanner.nextInt();
+            arr[i] = leerEntero("Número " + (i+1) + ": ");
         }
         
         System.out.println("\nSeleccione el método de ordenamiento:");
@@ -171,7 +179,7 @@ public class Main {
         System.out.println("2. Shell Sort");
         System.out.println("3. Quick Sort");
         
-        int choice = scanner.nextInt();
+        int choice = leerEntero("Seleccione el método (1-3): ");
         System.out.println("\nArray original:");
         printArray(arr);
         
