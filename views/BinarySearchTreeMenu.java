@@ -13,7 +13,7 @@ public class BinarySearchTreeMenu {
 
         boolean running = true;
         while (running) {
-            MenuUtils.limpiarPantalla();
+            //MenuUtils.limpiarPantalla();
             MenuUtils.mostrarEncabezado("OPERACIONES CON BINARY SEARCH TREE");
 
             System.out.println(MenuUtils.ANSI_CYAN + "\nOperaciones disponibles:" + MenuUtils.ANSI_RESET);
