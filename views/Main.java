@@ -11,9 +11,9 @@ public class Main {
             System.out.println(MenuUtils.ANSI_YELLOW + "1." + MenuUtils.ANSI_RESET + " Operaciones con Stack " + MenuUtils.ANSI_BLUE + "[Pila LIFO]" + MenuUtils.ANSI_RESET);
             System.out.println(MenuUtils.ANSI_YELLOW + "2." + MenuUtils.ANSI_RESET + " Operaciones con Queue " + MenuUtils.ANSI_BLUE + "[Cola FIFO]" + MenuUtils.ANSI_RESET);
             System.out.println(MenuUtils.ANSI_YELLOW + "3." + MenuUtils.ANSI_RESET + " Operaciones con LinkedList " + MenuUtils.ANSI_BLUE + "[Lista Enlazada]" + MenuUtils.ANSI_RESET);
-            System.out.println(MenuUtils.ANSI_YELLOW + "4." + MenuUtils.ANSI_RESET + " Operaciones con DoublyLinkedList " + MenuUtils.ANSI_BLUE + "[Lista Doblemente Enlazada]" + MenuUtils.ANSI_RESET);
-            System.out.println(MenuUtils.ANSI_YELLOW + "5." + MenuUtils.ANSI_RESET + " Operaciones con BinarySearchTree " + MenuUtils.ANSI_BLUE + "[BST]" + MenuUtils.ANSI_RESET);
-            System.out.println(MenuUtils.ANSI_YELLOW + "6." + MenuUtils.ANSI_RESET + " Pruebas de Ordenamiento " + MenuUtils.ANSI_BLUE + "[Sorting]" + MenuUtils.ANSI_RESET);
+            System.out.println(MenuUtils.ANSI_YELLOW + "4." + MenuUtils.ANSI_RESET + " Pruebas de Ordenamiento " + MenuUtils.ANSI_BLUE + "[Sorting]" + MenuUtils.ANSI_RESET);
+            System.out.println(MenuUtils.ANSI_YELLOW + "5." + MenuUtils.ANSI_RESET + " Operaciones con AVLTree " + MenuUtils.ANSI_BLUE + "[Árbol AVL]" + MenuUtils.ANSI_RESET);
+            System.out.println(MenuUtils.ANSI_YELLOW + "6." + MenuUtils.ANSI_RESET + " Operaciones con BinaryHeap " + MenuUtils.ANSI_BLUE + "[Montículo Binario]" + MenuUtils.ANSI_RESET);
             System.out.println(MenuUtils.ANSI_YELLOW + "7." + MenuUtils.ANSI_RESET + " Salir");
 
             int choice = MenuUtils.leerEntero(MenuUtils.ANSI_CYAN + "\nSeleccione una opción (1-7): " + MenuUtils.ANSI_RESET);
@@ -29,13 +29,13 @@ public class Main {
                     LinkedListMenu.show();
                     break;
                 case 4:
-                    DoublyLinkedListMenu.show();
+                    SortingMenu.show();
                     break;
                 case 5:
-                    BinarySearchTreeMenu.show();
+                    AVLTreeMenu.show();
                     break;
                 case 6:
-                    SortingMenu.show();
+                    BinaryHeapMenu.show();
                     break;
                 case 7:
                     running = false;
@@ -49,4 +49,3 @@ public class Main {
         MenuUtils.getScanner().close();
     }
 }
-

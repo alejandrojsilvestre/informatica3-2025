@@ -8,6 +8,8 @@ Este repositorio contiene implementaciones de estructuras de datos básicas y al
 - `Stack<T>`: Implementación genérica de pila
 - `Queue<T>`: Implementación genérica de cola circular
 - `Orders`: Implementación de algoritmos de ordenamiento
+- `AVLTree<T>`: Implementación de árbol AVL
+- `BinaryHeap<T>`: Implementación de montículo binario (Max Heap / Min Heap)
 
 ### Características Principales
 - Implementaciones genéricas que permiten cualquier tipo de dato comparable
@@ -53,6 +55,44 @@ Implementación de tres algoritmos clásicos de ordenamiento:
 - Algoritmo eficiente para grandes conjuntos de datos
 - Complejidad temporal promedio: O(n log n)
 - Complejidad espacial: O(log n)
+
+### AVLTree (Árbol AVL)
+Implementación de árbol binario de búsqueda auto-balanceado (AVL).
+
+#### Características
+- Inserción y búsqueda en tiempo O(log n)
+- Balance automático mediante rotaciones
+- Almacena datos genéricos comparables
+- Recorridos in-order disponibles
+- Visualización jerárquica del árbol
+
+#### Métodos
+- `insert(T data)`: Inserta un dato en el árbol
+- `search(T data)`: Busca un dato y retorna true/false
+- `remove(T data)`: Elimina un dato del árbol
+- `inOrder()`: Retorna lista con recorrido in-order
+- `getHeight()`: Retorna la altura del árbol
+- `printTree()`: Visualiza la estructura del árbol
+
+### BinaryHeap (Montículo Binario)
+Implementación genérica de montículo binario con soporte para Max Heap y Min Heap.
+
+#### Características
+- Inserción en tiempo O(log n)
+- Extracción de raíz en tiempo O(log n)
+- Soporte para Max Heap (elemento máximo en la raíz)
+- Soporte para Min Heap (elemento mínimo en la raíz)
+- Visualización jerárquica del montículo
+- Estructura eficiente basada en array
+
+#### Métodos
+- `insert(T data)`: Inserta un elemento en el montículo
+- `extract()`: Extrae y retorna el elemento raíz
+- `peek()`: Retorna el elemento raíz sin eliminarlo
+- `isEmpty()`: Verifica si el montículo está vacío
+- `size()`: Retorna la cantidad de elementos
+- `getElements()`: Retorna lista con todos los elementos
+- `printHeap()`: Visualiza la estructura del montículo
 
 ## Interfaz de Usuario
 
@@ -111,6 +151,20 @@ Orders.insertionSort(arr); // [1, 2, 5, 8, 9]
 Orders.shellSort(arr);     // [1, 2, 5, 8, 9]
 ```
 
+### AVLTree
+```java
+AVLTree avl = new AVLTree();
+avl.insert(10, "A");
+avl.insert(20, "B");
+avl.insert(5, "C");
+avl.insert(4, "D");
+avl.insert(15, "E");
+
+System.out.println(avl.search(15)); // Imprime: E
+System.out.println(avl.getHeight()); // Imprime la altura del árbol
+avl.inOrder(); // Imprime recorrido in-order: 4:D, 5:C, 10:A, 15:E, 20:B
+```
+
 ## Manejo de Errores
 ```java
 Stack<Integer> stack = new Stack<>(2);
@@ -159,6 +213,22 @@ Una implementación genérica de cola circular con tamaño fijo usando un array.
 - `isEmpty()`: Verifica si la cola está vacía
 - `isFull()`: Verifica si la cola está llena
 
+### AVLTree (Árbol AVL)
+Una implementación de árbol binario de búsqueda auto-balanceado (AVL).
+
+#### Características
+- Inserción y búsqueda en tiempo O(log n)
+- Balance automático mediante rotaciones
+- Almacena pares clave-valor
+- Recorridos in-order disponibles
+- Manejo robusto de nodos duplicados (actualiza valor)
+
+#### Métodos
+- `insert(int key, Object value)`: Inserta o actualiza un nodo
+- `search(int key)`: Busca y retorna el valor asociado a la clave
+- `inOrder()`: Imprime recorrido in-order (clave: valor)
+- `getHeight()`: Retorna la altura del árbol
+
 ## Ejemplos de Uso
 
 ### Stack
@@ -181,6 +251,28 @@ queue.enqueue("Tercero");
 
 System.out.println(queue.dequeue());  // Imprime: "Primero"
 System.out.println(queue.front());    // Imprime: "Segundo"
+```
+
+### Ordenamiento
+```java
+Integer[] arr = {5, 2, 8, 1, 9};
+Orders.quickSort(arr);     // [1, 2, 5, 8, 9]
+Orders.insertionSort(arr); // [1, 2, 5, 8, 9]
+Orders.shellSort(arr);     // [1, 2, 5, 8, 9]
+```
+
+### AVLTree
+```java
+AVLTree avl = new AVLTree();
+avl.insert(10, "A");
+avl.insert(20, "B");
+avl.insert(5, "C");
+avl.insert(4, "D");
+avl.insert(15, "E");
+
+System.out.println(avl.search(15)); // Imprime: E
+System.out.println(avl.getHeight()); // Imprime la altura del árbol
+avl.inOrder(); // Imprime recorrido in-order: 4:D, 5:C, 10:A, 15:E, 20:B
 ```
 
 ## Manejo de Errores
