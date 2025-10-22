@@ -14,9 +14,10 @@ public class Main {
             System.out.println(MenuUtils.ANSI_YELLOW + "4." + MenuUtils.ANSI_RESET + " Pruebas de Ordenamiento " + MenuUtils.ANSI_BLUE + "[Sorting]" + MenuUtils.ANSI_RESET);
             System.out.println(MenuUtils.ANSI_YELLOW + "5." + MenuUtils.ANSI_RESET + " Operaciones con AVLTree " + MenuUtils.ANSI_BLUE + "[Árbol AVL]" + MenuUtils.ANSI_RESET);
             System.out.println(MenuUtils.ANSI_YELLOW + "6." + MenuUtils.ANSI_RESET + " Operaciones con BinaryHeap " + MenuUtils.ANSI_BLUE + "[Montículo Binario]" + MenuUtils.ANSI_RESET);
-            System.out.println(MenuUtils.ANSI_YELLOW + "7." + MenuUtils.ANSI_RESET + " Salir");
+            System.out.println(MenuUtils.ANSI_YELLOW + "7." + MenuUtils.ANSI_RESET + " Operaciones con HashTable " + MenuUtils.ANSI_BLUE + "[Tabla Hash]" + MenuUtils.ANSI_RESET);
+            System.out.println(MenuUtils.ANSI_YELLOW + "8." + MenuUtils.ANSI_RESET + " Salir");
 
-            int choice = MenuUtils.leerEntero(MenuUtils.ANSI_CYAN + "\nSeleccione una opción (1-7): " + MenuUtils.ANSI_RESET);
+            int choice = MenuUtils.leerEntero(MenuUtils.ANSI_CYAN + "\nSeleccione una opción (1-8): " + MenuUtils.ANSI_RESET);
 
             switch (choice) {
                 case 1:
@@ -38,6 +39,10 @@ public class Main {
                     BinaryHeapMenu.show();
                     break;
                 case 7:
+                    HashTableMenu menu = new HashTableMenu();
+                    menu.mostrarMenu();
+                    break;
+                case 8:
                     running = false;
                     System.out.println("¡Hasta luego!");
                     break;

@@ -10,6 +10,7 @@ Este repositorio contiene implementaciones de estructuras de datos básicas y al
 - `Orders`: Implementación de algoritmos de ordenamiento
 - `AVLTree<T>`: Implementación de árbol AVL
 - `BinaryHeap<T>`: Implementación de montículo binario (Max Heap / Min Heap)
+- `HashTable<K,V>`: Implementación de tabla hash con encadenamiento
 
 ### Características Principales
 - Implementaciones genéricas que permiten cualquier tipo de dato comparable
@@ -93,6 +94,30 @@ Implementación genérica de montículo binario con soporte para Max Heap y Min 
 - `size()`: Retorna la cantidad de elementos
 - `getElements()`: Retorna lista con todos los elementos
 - `printHeap()`: Visualiza la estructura del montículo
+
+### HashTable (Tabla Hash)
+Implementación genérica de tabla hash con resolución de colisiones por encadenamiento.
+
+#### Características
+- Operaciones en tiempo O(1) promedio
+- Resolución de colisiones con encadenamiento (listas enlazadas)
+- Redimensionamiento automático cuando el factor de carga > 0.75
+- Almacena pares clave-valor genéricos
+- Estadísticas detalladas sobre distribución y colisiones
+- Capacidad inicial configurable (por defecto 16)
+
+#### Métodos
+- `put(K key, V value)`: Inserta o actualiza un par clave-valor
+- `get(K key)`: Obtiene el valor asociado a una clave
+- `remove(K key)`: Elimina un par clave-valor
+- `containsKey(K key)`: Verifica si existe una clave
+- `isEmpty()`: Verifica si la tabla está vacía
+- `size()`: Retorna la cantidad de elementos
+- `keys()`: Retorna lista con todas las claves
+- `values()`: Retorna lista con todos los valores
+- `clear()`: Limpia toda la tabla
+- `printTable()`: Visualiza la estructura interna
+- `printStatistics()`: Muestra estadísticas de distribución
 
 ## Interfaz de Usuario
 
